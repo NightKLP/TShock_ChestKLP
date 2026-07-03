@@ -1,0 +1,13 @@
+D:\Nightklp_KLP\my_Terraria_Plugins\my plugins\ChestKLP\ChestKLP\bin\Debug\net6.0\HttpServer.dll
+D:\Nightklp_KLP\my_Terraria_Plugins\my plugins\ChestKLP\ChestKLP\bin\Debug\net6.0\ChestKLP.deps.json
+D:\Nightklp_KLP\my_Terraria_Plugins\my plugins\ChestKLP\ChestKLP\bin\Debug\net6.0\ChestKLP.dll
+D:\Nightklp_KLP\my_Terraria_Plugins\my plugins\ChestKLP\ChestKLP\bin\Debug\net6.0\ChestKLP.pdb
+D:\Nightklp_KLP\my_Terraria_Plugins\my plugins\ChestKLP\ChestKLP\obj\Debug\net6.0\ChestKLP.csproj.AssemblyReference.cache
+D:\Nightklp_KLP\my_Terraria_Plugins\my plugins\ChestKLP\ChestKLP\obj\Debug\net6.0\ChestKLP.GeneratedMSBuildEditorConfig.editorconfig
+D:\Nightklp_KLP\my_Terraria_Plugins\my plugins\ChestKLP\ChestKLP\obj\Debug\net6.0\ChestKLP.AssemblyInfoInputs.cache
+D:\Nightklp_KLP\my_Terraria_Plugins\my plugins\ChestKLP\ChestKLP\obj\Debug\net6.0\ChestKLP.AssemblyInfo.cs
+D:\Nightklp_KLP\my_Terraria_Plugins\my plugins\ChestKLP\ChestKLP\obj\Debug\net6.0\ChestKLP.csproj.CoreCompileInputs.cache
+D:\Nightklp_KLP\my_Terraria_Plugins\my plugins\ChestKLP\ChestKLP\obj\Debug\net6.0\ChestKLP.dll
+D:\Nightklp_KLP\my_Terraria_Plugins\my plugins\ChestKLP\ChestKLP\obj\Debug\net6.0\refint\ChestKLP.dll
+D:\Nightklp_KLP\my_Terraria_Plugins\my plugins\ChestKLP\ChestKLP\obj\Debug\net6.0\ChestKLP.pdb
+D:\Nightklp_KLP\my_Terraria_Plugins\my plugins\ChestKLP\ChestKLP\obj\Debug\net6.0\ref\ChestKLP.dll
