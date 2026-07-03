@@ -84,7 +84,7 @@ namespace ChestKLP
         public class CONFIG_DB
         {
             public string StorageType = "sqlite";
-            public string SqliteDBPath = "MAINKLP.sqlite";
+            public string SqliteDBPath = "ChestKLP.sqlite";
             public string MySqlHost = "localhost:3306";
             public string MySqlDbName = "";
             public string MySqlUsername = "";

@@ -33,7 +33,7 @@ namespace ChestKLP
 
 
             sqlCreator.EnsureTableStructure(new SqlTable(ChestData.TableName_SelfChestData,
-                new SqlColumn("ChestKLPID", MySqlDbType.Int32) { Unique = true },
+                new SqlColumn("ChestKLPID", MySqlDbType.Int32),
                 new SqlColumn("PlayerName", MySqlDbType.VarChar, 50),
                 new SqlColumn("Items", MySqlDbType.Text)));
 
@@ -308,6 +308,8 @@ namespace ChestKLP
         {
             if (TryGetChestData(chest, out ChestData chestdata))
             {
+                chestdata.items = GetNetItemsFromChest(chest, CurrentItemChange);
+
                 if (!QueueChestAdminUpdate.Contains(chestdata.Pos))
                 {
                     QueueChestAdminUpdate.Add(chestdata.Pos);
@@ -387,6 +389,7 @@ namespace ChestKLP
                 ChestKLP.OnUpdateChestAdmin = false;
                 Console.WriteLine(e);
             }
+            QueueChestAdminUpdate.Clear();
         }
 
         public void UpdateSyncSelfChestData()
@@ -443,6 +446,8 @@ namespace ChestKLP
                 ChestKLP.OnUpdateChest = false;
                 Console.WriteLine(e);
             }
+
+            QueueChestUpdate.Clear();
 
             return;
 

@@ -18,7 +18,7 @@ namespace ChestKLP
         public override string Author => "Nightklp";
         public override string Description => "lets your chest have a unique function";
         public override string Name => "ChestKLP";
-        public override System.Version Version => new System.Version(1, 0);
+        public override System.Version Version => new System.Version(1, 0, 1);
         #endregion
 
 
@@ -90,7 +90,7 @@ namespace ChestKLP
 
             GetDataHandlers.ChestOpen += ChestOpen;
             GetDataHandlers.ChestItemChange += ChestItemChange;
-            //GetDataHandlers.PlaceChest += HandlePlaceChest;
+            GetDataHandlers.PlaceChest += HandlePlaceChest;
             OTAPI.Hooks.Chest.QuickStack += OnQuickStack;
 
             GeneralHooks.ReloadEvent += OnReload;
@@ -117,7 +117,7 @@ namespace ChestKLP
 
                 GetDataHandlers.ChestOpen -= ChestOpen;
                 GetDataHandlers.ChestItemChange -= ChestItemChange;
-                //GetDataHandlers.PlaceChest -= HandlePlaceChest;
+                GetDataHandlers.PlaceChest -= HandlePlaceChest;
                 OTAPI.Hooks.Chest.QuickStack -= OnQuickStack;
 
                 GeneralHooks.ReloadEvent -= OnReload;
@@ -133,6 +133,7 @@ namespace ChestKLP
         {
             if ((DateTime.UtcNow - ChestCheck).TotalSeconds <= 3) { return; }
             ChestCheck = DateTime.UtcNow;
+
 
             if (AllPlayersIsOpenChest()) { return; }
 
@@ -217,14 +218,23 @@ namespace ChestKLP
             #endregion
         }
 
-        //private void HandlePlaceChest(object? sender, GetDataHandlers.PlaceChestEventArgs args)
-        //{
-        //    #region code
-        //    return;
-        //    //if (args.)
+        private void HandlePlaceChest(object? sender, GetDataHandlers.PlaceChestEventArgs args)
+        {
+            #region code
+            int getchestid = GetChestIDByPos(args.TileX, args.TileY);
+            Chest getchest = Main.chest[getchestid];
 
-        //    #endregion
-        //}
+            ChestData chestdata;
+            if (!MainDBManager.TryGetChestData(getchest, out chestdata))
+            {
+                return;
+            }
+
+            args.Player.SendTileSquareCentered(args.TileX, args.TileY, 4);
+            args.Handled = true;
+
+            #endregion
+        }
         private void ChestOpen(object? sender, GetDataHandlers.ChestOpenEventArgs args)
         {
             #region code
