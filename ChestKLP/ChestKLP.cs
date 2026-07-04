@@ -18,7 +18,7 @@ namespace ChestKLP
         public override string Author => "Nightklp";
         public override string Description => "lets your chest have a unique function";
         public override string Name => "ChestKLP";
-        public override System.Version Version => new System.Version(1, 0, 1);
+        public override System.Version Version => new System.Version(1, 0, 2);
         #endregion
 
 
