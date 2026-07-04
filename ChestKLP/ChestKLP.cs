@@ -221,11 +221,8 @@ namespace ChestKLP
         private void HandlePlaceChest(object? sender, GetDataHandlers.PlaceChestEventArgs args)
         {
             #region code
-            int getchestid = GetChestIDByPos(args.TileX, args.TileY);
-            Chest getchest = Main.chest[getchestid];
 
-            ChestData chestdata;
-            if (!MainDBManager.TryGetChestData(getchest, out chestdata))
+            if (!MainDBManager.TryGetChestData(args.TileX, args.TileY, out _))
             {
                 return;
             }
