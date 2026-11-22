@@ -18,7 +18,7 @@ namespace ChestKLP
         public override string Author => "Nightklp";
         public override string Description => "lets your chest have a unique function";
         public override string Name => "ChestKLP";
-        public override System.Version Version => new System.Version(1, 0, 2);
+        public override System.Version Version => new System.Version(1, 1);
         #endregion
 
 
@@ -174,6 +174,11 @@ namespace ChestKLP
 
             Chest getchest = Main.chest[args.ID];
 
+            if (getchest == null)
+            {
+                return;
+            }
+
             ChestData chestdata;
             if (!MainDBManager.TryGetChestData(getchest, out chestdata))
             {
@@ -222,11 +227,15 @@ namespace ChestKLP
         {
             #region code
 
+            DebugLogKLP($"PlaceChest : executed A1");
+
             if (!MainDBManager.TryGetChestData(args.TileX, args.TileY, out _))
             {
+                DebugLogKLP($"PlaceChest : executed B1");
                 return;
             }
 
+            DebugLogKLP($"PlaceChest : executed A2");
             args.Player.SendTileSquareCentered(args.TileX, args.TileY, 4);
             args.Handled = true;
 
@@ -236,38 +245,65 @@ namespace ChestKLP
         {
             #region code
 
+            DebugLogKLP($"ChestOpen : executed A1");
             int getchestid = GetChestIDByPos(args.X, args.Y);
 
+            if (getchestid == -1)
+            {
+                DebugLogKLP($"ChestOpen : pos id not found");
+                return;
+            }
+
+            DebugLogKLP($"ChestOpen : executed A2");
             Chest getchest = Main.chest[getchestid];
+
+            if (getchest == null)
+            {
+                DebugLogKLP($"ChestOpen : returned null");
+                return;
+            }
 
             if (PlayerWhoModify.ContainsKey(args.Player.Name))
             {
-                args.Handled = true;
+                DebugLogKLP($"ChestOpen : executed B1 ( player modify )");
                 if (OnUpdateChestAdmin)
                 {
+                    DebugLogKLP($"ChestOpen : OnUpdateChestAdmin");
                     args.Player.SendErrorMessage("Cannot Open the chest at the moment!");
+                    args.Handled = true;
                     return;
                 }
 
+                DebugLogKLP($"ChestOpen : executed B2");
+                args.Handled = true;
+
+                DebugLogKLP($"ChestOpen : executed B3");
                 ChestModifyType modifytype = PlayerWhoModify[args.Player.Name];
 
+                DebugLogKLP($"ChestOpen : executed B4");
                 switch (modifytype)
                 {
                     case ChestModifyType.AddUnliChest:
                         #region [ Add UnliChest ]
                         {
-                            if (!MainDBManager.TryGetChestData(args.X, args.Y, out ChestData get))
+                            DebugLogKLP($"ChestOpen : executed B A1");
+
+                            if (MainDBManager.TryGetChestData(args.X, args.Y, out ChestData get))
                             {
+                                DebugLogKLP($"ChestOpen : executed B A2 (invalid)");
                                 args.Player.SendErrorMessage($"This Chest Data Already Existed!" +
                                     $"\nChestType: {get.Type.ToString()}");
                                 return;
                             }
 
+                            DebugLogKLP($"ChestOpen : executed B A3");
                             if (MainDBManager.CreateNewChestKLP(getchest, ChestKLPType.UnliChest))
                             {
+                                DebugLogKLP($"ChestOpen : executed B A4");
                                 args.Player.SendSuccessMessage($"({args.X}, {args.Y}) UnliChest has been added!");
                             } else
                             {
+                                DebugLogKLP($"ChestOpen : executed B A5");
                                 args.Player.SendErrorMessage("Unable to add UnliChest!");
                             }
                             return;
@@ -276,18 +312,23 @@ namespace ChestKLP
                     case ChestModifyType.AddSelfChest:
                         #region [ Add SelfChest ]
                         {
-                            if (!MainDBManager.TryGetChestData(args.X, args.Y, out ChestData get))
+                            DebugLogKLP($"ChestOpen : executed B B1");
+                            if (MainDBManager.TryGetChestData(args.X, args.Y, out ChestData get))
                             {
+                                DebugLogKLP($"ChestOpen : executed B B2 (invalid)");
                                 args.Player.SendErrorMessage($"This Chest Data Already Existed!" +
                                     $"\nChestType: {get.Type.ToString()}");
                                 return;
                             }
 
+                            DebugLogKLP($"ChestOpen : executed B B3");
                             if (MainDBManager.CreateNewChestKLP(getchest, ChestKLPType.SelfChest))
                             {
+                                DebugLogKLP($"ChestOpen : executed B B4");
                                 args.Player.SendSuccessMessage($"({args.X}, {args.Y}) SelfChest has been added!");
                             } else
                             {
+                                DebugLogKLP($"ChestOpen : executed B B5");
                                 args.Player.SendErrorMessage("Unable to add SelfChest!");
                             }
                             return;
@@ -296,24 +337,31 @@ namespace ChestKLP
                     case ChestModifyType.RemoveUnliChest:
                         #region [ Remove UnliChest ]
                         {
+                            DebugLogKLP($"ChestOpen : executed B C1");
                             if (!MainDBManager.TryGetChestData(args.X, args.Y, out ChestData get))
                             {
+                                DebugLogKLP($"ChestOpen : executed B C2 (invalid)");
                                 args.Player.SendErrorMessage($"Cannot Find Chest Data of ({args.X}, {args.Y})!");
                                 return;
                             }
 
+                            DebugLogKLP($"ChestOpen : executed B C3");
                             if (get.Type != ChestKLPType.UnliChest)
                             {
-                                args.Player.SendErrorMessage($"This chest sin't UnliChest!" +
+                                DebugLogKLP($"ChestOpen : executed B C4 (invalidtype)");
+                                args.Player.SendErrorMessage($"This chest isn't UnliChest!" +
                                     $"\nChestType: {get.Type.ToString()}");
                                 return;
                             }
 
+                            DebugLogKLP($"ChestOpen : executed B C5");
                             if (MainDBManager.RemoveChestKLP(getchest))
                             {
+                                DebugLogKLP($"ChestOpen : executed B C6");
                                 args.Player.SendSuccessMessage($"({args.X}, {args.Y}) UnliChest has been Removed!");
                             } else
                             {
+                                DebugLogKLP($"ChestOpen : executed B C7");
                                 args.Player.SendErrorMessage("Unable to remove UnliChest!");
                             }
                             return;
@@ -322,24 +370,31 @@ namespace ChestKLP
                     case ChestModifyType.RemoveSelfChest:
                         #region [ Remove SelfChest ]
                         {
+                            DebugLogKLP($"ChestOpen : executed B D1");
                             if (!MainDBManager.TryGetChestData(args.X, args.Y, out ChestData get))
                             {
+                                DebugLogKLP($"ChestOpen : executed B D2 (invalid)");
                                 args.Player.SendErrorMessage($"Cannot Find Chest Data of ({args.X}, {args.Y})!");
                                 return;
                             }
 
+                            DebugLogKLP($"ChestOpen : executed B D3");
                             if (get.Type != ChestKLPType.SelfChest)
                             {
-                                args.Player.SendErrorMessage($"This chest sin't SelfChest!" +
+                                DebugLogKLP($"ChestOpen : executed B D4 (invalidtype)");
+                                args.Player.SendErrorMessage($"This chest isn't SelfChest!" +
                                     $"\nChestType: {get.Type.ToString()}");
                                 return;
                             }
 
+                            DebugLogKLP($"ChestOpen : executed B D5");
                             if (MainDBManager.RemoveChestKLP(getchest))
                             {
+                                DebugLogKLP($"ChestOpen : executed B D6");
                                 args.Player.SendSuccessMessage($"({args.X}, {args.Y}) SelfChest has been Removed!");
                             } else
                             {
+                                DebugLogKLP($"ChestOpen : executed B D7");
                                 args.Player.SendErrorMessage("Unable to remove SelfChest!");
                             }
                             return;
@@ -348,58 +403,81 @@ namespace ChestKLP
                     case ChestModifyType.EditSelfChest:
                     case ChestModifyType.EditUnliChest:
                         {
+                            DebugLogKLP($"ChestOpen : executed B E1");
                             if (!MainDBManager.TryGetChestData(args.X, args.Y, out ChestData get))
                             {
+                                DebugLogKLP($"ChestOpen : executed B E2 (invalid)");
                                 args.Player.SendErrorMessage($"Cannot Find Chest Data of ({args.X}, {args.Y})!");
                                 return;
                             }
+                            DebugLogKLP($"ChestOpen : executed B E3");
                             UpdateChestItems(getchestid, get.items);
+                            return;
+                        }
+                    default:
+                        {
+                            DebugLogKLP($"ChestOpen : executed B F1");
+                            args.Player.SendErrorMessage("Unable to get Modify Data Type!");
                             return;
                         }
                 }
             }
 
+            DebugLogKLP($"ChestOpen : executed A3");
             if (!MainDBManager.TryGetChestData(args.X, args.Y, out ChestData chestdata))
             {
+                DebugLogKLP($"ChestOpen : executed A4");
                 return;
             }
 
+            DebugLogKLP($"ChestOpen : executed A5");
             if (OnUpdateChest)
             {
+                DebugLogKLP($"ChestOpen : executed A6");
                 args.Player.SendErrorMessage("Cannot Open the chest at the moment!");
                 args.Handled = true;
                 return;
             }
 
+            DebugLogKLP($"ChestOpen : executed A7");
             switch (chestdata.Type)
             {
                 case ChestKLPType.SelfChest:
                     #region ( Self Chest )
                     {
+                        DebugLogKLP($"ChestOpen : executed A A1");
                         if ((bool)Config.Main.SelfChest_To_Vault)
                         {
+                            DebugLogKLP($"ChestOpen : executed A A A1");
                             PlrSelfChest getplrdata;
                             if (!chestdata.TryGetPlrSelfChest(args.Player.Name, out getplrdata))
                             {
+                                DebugLogKLP($"ChestOpen : executed A A A2");
                                 UpdateChestItems(getchestid, chestdata.items);
                             }
                             else
                             {
+                                DebugLogKLP($"ChestOpen : executed A A A3");
                                 UpdateChestItems(getchestid, getplrdata.items);
                             }
                             return;
                         }
                         else
                         {
+                            DebugLogKLP($"ChestOpen : executed A A B1");
                             args.Handled = true;
 
+                            DebugLogKLP($"ChestOpen : executed A A B2");
                             bool IsEmpty = true;
 
+                            DebugLogKLP($"ChestOpen : executed A A B3");
                             PlrSelfChest getplrdata;
                             if (!chestdata.TryGetPlrSelfChest(args.Player.Name, out getplrdata))
                             {
+                                DebugLogKLP($"ChestOpen : executed A A B4");
                                 NetItem[] getitems = (NetItem[])chestdata.items.Clone();
 
+                                DebugLogKLP($"ChestOpen : executed A A B5");
                                 for (int i = 0; i < getitems.Length; i++)
                                 {
                                     if (getitems[i].NetId == 0) continue;
@@ -416,23 +494,29 @@ namespace ChestKLP
 
                                     getitems[i] = NetItemEmpty();
                                 }
+                                DebugLogKLP($"ChestOpen : executed A A B6");
 
                                 chestdata.AddNewPlrSelfChest(new PlrSelfChest(args.Player.Name, getitems));
 
+                                DebugLogKLP($"ChestOpen : executed A A B7");
                                 if (!MainDBManager.QueueChestUpdate.ContainsKey(chestdata.Pos))
                                 {
+                                    DebugLogKLP($"ChestOpen : executed A A B8");
                                     MainDBManager.QueueChestUpdate.Add(chestdata.Pos, new() { { args.Player.Name, true } });
                                 }
                                 else
                                 {
+                                    DebugLogKLP($"ChestOpen : executed A A B9");
                                     if (!MainDBManager.QueueChestUpdate[chestdata.Pos].ContainsKey(args.Player.Name))
                                     {
+                                        DebugLogKLP($"ChestOpen : executed A A B10");
                                         MainDBManager.QueueChestUpdate[chestdata.Pos].Add(args.Player.Name, true);
                                     }
                                 }
                             }
                             else
                             {
+                                DebugLogKLP($"ChestOpen : executed A A C1");
                                 for (int i = 0; i < getplrdata.items.Length; i++)
                                 {
                                     if (getplrdata.items[i].NetId == 0) continue;
@@ -449,19 +533,24 @@ namespace ChestKLP
 
                                     getplrdata.items[i] = NetItemEmpty();
                                 }
+                                DebugLogKLP($"ChestOpen : executed A A C2");
 
                                 if (!MainDBManager.QueueChestUpdate.ContainsKey(chestdata.Pos))
                                 {
+                                    DebugLogKLP($"ChestOpen : executed A A C3");
                                     MainDBManager.QueueChestUpdate.Add(chestdata.Pos, new() { { args.Player.Name, false } });
                                 }
                                 else
                                 {
+                                    DebugLogKLP($"ChestOpen : executed A A C4");
                                     if (!MainDBManager.QueueChestUpdate[chestdata.Pos].ContainsKey(args.Player.Name))
                                     {
+                                        DebugLogKLP($"ChestOpen : executed A A C5");
                                         MainDBManager.QueueChestUpdate[chestdata.Pos].Add(args.Player.Name, false);
                                     }
                                 }
                             }
+                            DebugLogKLP($"ChestOpen : executed A A C6");
 
                             args.Player.SendSuccessMessage(IsEmpty ? "you already took everything on the chest!" : "you took items from the chest.");
                         }
@@ -479,6 +568,11 @@ namespace ChestKLP
             #region code
 
             Chest getchest = Main.chest[args.ChestIndex];
+
+            if (getchest == null)
+            {
+                return;
+            }
 
             if (!MainDBManager.TryGetChestData(getchest, out ChestData chestdata))
             {
@@ -723,6 +817,18 @@ namespace ChestKLP
         #endregion
 
 
+        public static void DebugLogKLP(string text)
+        {
+            if (!(bool)Config.Main.UseDebugLog) { return; }
+
+            Console.ResetColor();
+            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+            Console.Write("[Debug-ChestKLP] ");
+            Console.ResetColor();
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine(text);
+            Console.ResetColor();
+        }
 
         public void UpdateChestItems(int chestindex, NetItem[] gitems)
         {
@@ -748,12 +854,20 @@ namespace ChestKLP
         }
         public static int GetChestIDByPos(int x, int y)
         {
-            for (int i = 0; i < Main.chest.Length; i++)
+            try
             {
-                if (Main.chest[i].x == x && Main.chest[i].y == y)
+                for (int i = 0; i < Main.chest.Length; i++)
                 {
-                    return i;
+                    if (Main.chest[i] == null) { continue; }
+                    if (Main.chest[i].x == x && Main.chest[i].y == y)
+                    {
+                        return i;
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                DebugLogKLP($"GetChestIDByPos : Error - {ex.Message}");
             }
             return -1;
         }

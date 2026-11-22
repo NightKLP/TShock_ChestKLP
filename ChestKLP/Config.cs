@@ -65,6 +65,8 @@ namespace ChestKLP
 
         public class CONFIG_MAIN
         {
+            public bool? UseDebugLog = false;
+
             public bool? SelfChest_To_Vault = false;
 
             public string SelfChest_CMD_Permission = "chestklp.selfchest.modify";
@@ -74,6 +76,8 @@ namespace ChestKLP
             public void FixNull()
             {
                 CONFIG_MAIN getdefault = new();
+
+                if (UseDebugLog == null) UseDebugLog = getdefault.UseDebugLog;
 
                 if (SelfChest_To_Vault == null) SelfChest_To_Vault = getdefault.SelfChest_To_Vault;
 

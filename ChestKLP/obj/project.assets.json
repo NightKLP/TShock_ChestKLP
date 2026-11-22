@@ -521,7 +521,7 @@
           }
         }
       },
-      "OTAPI.Upcoming/3.3.11": {
+      "OTAPI.Upcoming/3.3.14": {
         "type": "package",
         "dependencies": {
           "ModFramework": "1.1.15",
@@ -1448,11 +1448,11 @@
           }
         }
       },
-      "TSAPI/6.0.0": {
+      "TSAPI/6.1.0": {
         "type": "package",
         "dependencies": {
           "Newtonsoft.Json": "13.0.3",
-          "OTAPI.Upcoming": "3.3.10",
+          "OTAPI.Upcoming": "3.3.11",
           "System.Diagnostics.PerformanceCounter": "9.0.0"
         },
         "compile": {
@@ -1466,7 +1466,7 @@
           }
         }
       },
-      "TShock/6.0.0": {
+      "TShock/6.1.0": {
         "type": "package",
         "dependencies": {
           "BCrypt.Net-Next": "4.0.3",
@@ -1474,7 +1474,7 @@
           "Microsoft.Data.Sqlite": "9.0.0",
           "MySql.Data": "9.1.0",
           "Npgsql": "9.0.3",
-          "TSAPI": "6.0.0"
+          "TSAPI": "6.1.0"
         },
         "compile": {
           "lib/net9.0/TShockAPI.dll": {
@@ -2292,17 +2292,17 @@
         "nuget.versioning.nuspec"
       ]
     },
-    "OTAPI.Upcoming/3.3.11": {
-      "sha512": "+wz1MAUCC/vGJQcXeLXxL5j2k6aHU5nJ6SgK26TaIysCNUGeM65BeSVYsUWg6423lMUmStJH/e/1IxLiUik+1g==",
+    "OTAPI.Upcoming/3.3.14": {
+      "sha512": "77lcG/91AT2rMrFGGiK4EqvRl6eXwOmh0MTYFZFeH8TB01zEU64dZXYv4aLkd4ZbClrcZ5B0kh6TM2AxJpgjPQ==",
       "type": "package",
-      "path": "otapi.upcoming/3.3.11",
+      "path": "otapi.upcoming/3.3.14",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "COPYING.txt",
         "lib/net9.0/OTAPI.Runtime.dll",
         "lib/net9.0/OTAPI.dll",
-        "otapi.upcoming.3.3.11.nupkg.sha512",
+        "otapi.upcoming.3.3.14.nupkg.sha512",
         "otapi.upcoming.nuspec"
       ]
     },
@@ -4693,23 +4693,23 @@
         "useSharedDesignerContext.txt"
       ]
     },
-    "TSAPI/6.0.0": {
-      "sha512": "w15whtYuN1E5utLUu9Go56RmDsrsRNZPFWM/41TnvRaz/OQTsg5Xj7AK//WKwRrv5NwERleeXhs1WvnDqyck5Q==",
+    "TSAPI/6.1.0": {
+      "sha512": "KGolObuErGOCV3oYZEvXNILGQydWJERS8XWJV6RGbW2DpnShASoCEzQcOaD7nvysfLTV78D46mmwPtDaZ+Ub1Q==",
       "type": "package",
-      "path": "tsapi/6.0.0",
+      "path": "tsapi/6.1.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "lib/net9.0/TerrariaServer.dll",
         "lib/net9.0/TerrariaServer.xml",
-        "tsapi.6.0.0.nupkg.sha512",
+        "tsapi.6.1.0.nupkg.sha512",
         "tsapi.nuspec"
       ]
     },
-    "TShock/6.0.0": {
-      "sha512": "v4kvTGSD5NTNoc3DOok+Rgi7fIn/OwcnEmJ1/KwUADJMwE/UNLm+ZfOIscer8uGnmMb4IZAN/1lpfLNH4mfBfA==",
+    "TShock/6.1.0": {
+      "sha512": "0mHi2z20Fjk30TTm9R15a/71hcrszbwbxGfOEpaTWW6Zwc9ggHynRdXHwKuX7prSpMa6jVFECqBh7QiLWcKDDQ==",
       "type": "package",
-      "path": "tshock/6.0.0",
+      "path": "tshock/6.1.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -4717,7 +4717,7 @@
         "contentFiles/any/net9.0/HttpServer.dll",
         "lib/net9.0/TShockAPI.dll",
         "lib/net9.0/TShockAPI.xml",
-        "tshock.6.0.0.nupkg.sha512",
+        "tshock.6.1.0.nupkg.sha512",
         "tshock.nuspec"
       ]
     },
@@ -4743,9 +4743,9 @@
   },
   "projectFileDependencyGroups": {
     "net9.0": [
-      "OTAPI.Upcoming >= 3.3.11",
-      "TSAPI >= 6.0.0",
-      "TShock >= 6.0.0"
+      "OTAPI.Upcoming >= 3.3.14",
+      "TSAPI >= 6.1.0",
+      "TShock >= 6.1.0"
     ]
   },
   "packageFolders": {
@@ -4797,15 +4797,15 @@
         "dependencies": {
           "OTAPI.Upcoming": {
             "target": "Package",
-            "version": "[3.3.11, )"
+            "version": "[3.3.14, )"
           },
           "TSAPI": {
             "target": "Package",
-            "version": "[6.0.0, )"
+            "version": "[6.1.0, )"
           },
           "TShock": {
             "target": "Package",
-            "version": "[6.0.0, )"
+            "version": "[6.1.0, )"
           }
         },
         "imports": [

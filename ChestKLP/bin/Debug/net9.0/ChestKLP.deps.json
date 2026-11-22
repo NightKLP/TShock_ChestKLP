@@ -8,9 +8,9 @@
     ".NETCoreApp,Version=v9.0": {
       "ChestKLP/1.0.0": {
         "dependencies": {
-          "OTAPI.Upcoming": "3.3.11",
-          "TSAPI": "6.0.0",
-          "TShock": "6.0.0"
+          "OTAPI.Upcoming": "3.3.14",
+          "TSAPI": "6.1.0",
+          "TShock": "6.1.0"
         },
         "runtime": {
           "ChestKLP.dll": {}
@@ -348,7 +348,7 @@
           }
         }
       },
-      "OTAPI.Upcoming/3.3.11": {
+      "OTAPI.Upcoming/3.3.14": {
         "dependencies": {
           "ModFramework": "1.1.15",
           "MonoMod": "22.7.31.1",
@@ -363,8 +363,8 @@
             "fileVersion": "0.0.0.0"
           },
           "lib/net9.0/OTAPI.dll": {
-            "assemblyVersion": "1.4.5.6",
-            "fileVersion": "1.4.5.6"
+            "assemblyVersion": "1.4.5.8",
+            "fileVersion": "1.4.5.8"
           }
         }
       },
@@ -666,32 +666,32 @@
           }
         }
       },
-      "TSAPI/6.0.0": {
+      "TSAPI/6.1.0": {
         "dependencies": {
           "Newtonsoft.Json": "13.0.3",
-          "OTAPI.Upcoming": "3.3.11",
+          "OTAPI.Upcoming": "3.3.14",
           "System.Diagnostics.PerformanceCounter": "9.0.0"
         },
         "runtime": {
           "lib/net9.0/TerrariaServer.dll": {
-            "assemblyVersion": "6.0.0.0",
-            "fileVersion": "6.0.0.0"
+            "assemblyVersion": "6.1.0.0",
+            "fileVersion": "6.1.0.0"
           }
         }
       },
-      "TShock/6.0.0": {
+      "TShock/6.1.0": {
         "dependencies": {
           "BCrypt.Net-Next": "4.0.3",
           "GetText.NET": "8.0.5",
           "Microsoft.Data.Sqlite": "9.0.0",
           "MySql.Data": "9.1.0",
           "Npgsql": "9.0.3",
-          "TSAPI": "6.0.0"
+          "TSAPI": "6.1.0"
         },
         "runtime": {
           "lib/net9.0/TShockAPI.dll": {
-            "assemblyVersion": "6.0.0.0",
-            "fileVersion": "6.0.0.0"
+            "assemblyVersion": "6.1.0.0",
+            "fileVersion": "6.1.0.0"
           }
         }
       },
@@ -907,12 +907,12 @@
       "path": "nuget.versioning/6.13.2",
       "hashPath": "nuget.versioning.6.13.2.nupkg.sha512"
     },
-    "OTAPI.Upcoming/3.3.11": {
+    "OTAPI.Upcoming/3.3.14": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-+wz1MAUCC/vGJQcXeLXxL5j2k6aHU5nJ6SgK26TaIysCNUGeM65BeSVYsUWg6423lMUmStJH/e/1IxLiUik+1g==",
-      "path": "otapi.upcoming/3.3.11",
-      "hashPath": "otapi.upcoming.3.3.11.nupkg.sha512"
+      "sha512": "sha512-77lcG/91AT2rMrFGGiK4EqvRl6eXwOmh0MTYFZFeH8TB01zEU64dZXYv4aLkd4ZbClrcZ5B0kh6TM2AxJpgjPQ==",
+      "path": "otapi.upcoming/3.3.14",
+      "hashPath": "otapi.upcoming.3.3.14.nupkg.sha512"
     },
     "SQLitePCLRaw.bundle_e_sqlite3/2.1.10": {
       "type": "package",
@@ -1005,19 +1005,19 @@
       "path": "system.windows.extensions/8.0.0",
       "hashPath": "system.windows.extensions.8.0.0.nupkg.sha512"
     },
-    "TSAPI/6.0.0": {
+    "TSAPI/6.1.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-w15whtYuN1E5utLUu9Go56RmDsrsRNZPFWM/41TnvRaz/OQTsg5Xj7AK//WKwRrv5NwERleeXhs1WvnDqyck5Q==",
-      "path": "tsapi/6.0.0",
-      "hashPath": "tsapi.6.0.0.nupkg.sha512"
+      "sha512": "sha512-KGolObuErGOCV3oYZEvXNILGQydWJERS8XWJV6RGbW2DpnShASoCEzQcOaD7nvysfLTV78D46mmwPtDaZ+Ub1Q==",
+      "path": "tsapi/6.1.0",
+      "hashPath": "tsapi.6.1.0.nupkg.sha512"
     },
-    "TShock/6.0.0": {
+    "TShock/6.1.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-v4kvTGSD5NTNoc3DOok+Rgi7fIn/OwcnEmJ1/KwUADJMwE/UNLm+ZfOIscer8uGnmMb4IZAN/1lpfLNH4mfBfA==",
-      "path": "tshock/6.0.0",
-      "hashPath": "tshock.6.0.0.nupkg.sha512"
+      "sha512": "sha512-0mHi2z20Fjk30TTm9R15a/71hcrszbwbxGfOEpaTWW6Zwc9ggHynRdXHwKuX7prSpMa6jVFECqBh7QiLWcKDDQ==",
+      "path": "tshock/6.1.0",
+      "hashPath": "tshock.6.1.0.nupkg.sha512"
     },
     "ZstdSharp.Port/0.8.0": {
       "type": "package",

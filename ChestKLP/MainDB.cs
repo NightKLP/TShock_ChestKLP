@@ -277,6 +277,11 @@ namespace ChestKLP
         #region [ Get ]
         public bool TryGetChestData(Chest chest, out ChestData chestdata)
         {
+            if (chest == null)
+            {
+                chestdata = null;
+                return false;
+            }
             return TryGetChestData(chest.x, chest.y, out chestdata);
         }
         public bool TryGetChestData(Point16 pos, out ChestData chestdata)
